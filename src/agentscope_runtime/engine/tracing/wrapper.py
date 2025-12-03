@@ -898,7 +898,7 @@ def _get_service_name() -> str:
 def _get_tracer() -> Tracer:
     handlers: list[TracerHandler] = []
     if _str_to_bool(os.getenv("TRACE_ENABLE_LOG", "true")):
-        handlers.append(LocalLogHandler(enable_console=True))
+        handlers.append(LocalLogHandler(enable_console=_str_to_bool(os.getenv("TRACE_ENABLE_CONSOLE_LOG", "true")))
 
     tracer = Tracer(handlers=handlers)
     return tracer
